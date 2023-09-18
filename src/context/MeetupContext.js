@@ -5,10 +5,11 @@ const MeetupContext = React.createContext({
   name: '',
   activeTopic: '',
   isRegister: false,
-  onClickRegister: () => {},
-  onClickRegisterNow: () => {},
+  isName: false,
+  onRegisterNow: () => {},
   onChangeActiveTopic: () => {},
   onChangeName: () => {},
+  onName: () => {},
 })
 
 export default MeetupContext

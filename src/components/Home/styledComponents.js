@@ -35,9 +35,10 @@ export const CustomHeading = styled.h1`
   color: #3b82f6;
   font-family: 'Roboto';
   font-size: 24px;
+  line-height: 1.8;
 `
 
-export const CustomPara = styled.p`
+export const CustomPara = styled.h1`
   color: #334155;
   font-family: 'Roboto';
   font-size: 18px;

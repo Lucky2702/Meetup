@@ -34,11 +34,12 @@ const topicsList = [
 
 // Replace your code here
 class App extends Component {
-  state = {topicList: topicsList, name: '', activeTopic: '', isRegister: false}
-
-  onClickRegister = () => {
-    const {history} = this.props
-    history.replace('/register')
+  state = {
+    topicList: topicsList,
+    name: '',
+    activeTopic: topicsList[0].id,
+    isRegister: false,
+    isName: false,
   }
 
   onChangeName = name => {
@@ -49,12 +50,16 @@ class App extends Component {
     this.setState({activeTopic: topic})
   }
 
-  onClickRegisterNow = () => {
+  onRegisterNow = () => {
     this.setState({isRegister: true})
   }
 
+  onName = () => {
+    this.setState({isName: true})
+  }
+
   render() {
-    const {topicList, name, activeTopic, isRegister} = this.state
+    const {topicList, name, activeTopic, isRegister, isName} = this.state
 
     return (
       <MeetupContext.Provider
@@ -63,10 +68,11 @@ class App extends Component {
           name,
           activeTopic,
           isRegister,
-          onClickRegister: this.onClickRegister,
-          onClickRegisterNow: this.onClickRegisterNow,
+          isName,
+          onRegisterNow: this.onRegisterNow,
           onChangeName: this.onChangeName,
           onChangeActiveTopic: this.onChangeActiveTopic,
+          onName: this.onName,
         }}
       >
         <Switch>

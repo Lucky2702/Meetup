@@ -15,8 +15,10 @@ import {
 const Home = () => (
   <MeetupContext.Consumer>
     {value => {
-      const {name, activeTopic, isRegister} = value
-      console.log(activeTopic)
+      const {name, activeTopic, isRegister, topicList} = value
+
+      const topic = topicList.filter(each => each.id === activeTopic)
+      console.log(topic)
 
       const renderHomeRegisterView = () => (
         <>
@@ -35,7 +37,7 @@ const Home = () => (
       const renderRegisterView = () => (
         <>
           <CustomHeading>Hello {name}</CustomHeading>
-          <CustomPara>Welcome to {activeTopic}</CustomPara>
+          <CustomPara>Welcome to {topic[0].displayText}</CustomPara>
           <ImageElement
             src="https://assets.ccbp.in/frontend/react-js/meetup/meetup-img.png"
             alt="meetup"
