@@ -1,15 +1,14 @@
 import React from 'react'
 
 const MeetupContext = React.createContext({
-  topicList: [],
   name: '',
-  activeTopic: '',
+  topic: 'ARTS_AND_CULTURE',
   isRegister: false,
-  isName: false,
-  onRegisterNow: () => {},
-  onChangeActiveTopic: () => {},
+  showError: false,
+  onRegister: () => {},
+  onChangeTopic: () => {},
   onChangeName: () => {},
-  onName: () => {},
+  updateError: () => {},
 })
 
 export default MeetupContext

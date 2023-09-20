@@ -9,70 +9,46 @@ import MeetupContext from './context/MeetupContext'
 import './App.css'
 
 // These are the lists used in the application. You can move them to any component needed.
-const topicsList = [
-  {
-    id: 'ARTS_AND_CULTURE',
-    displayText: 'Arts and Culture',
-  },
-  {
-    id: 'CAREER_AND_BUSINESS',
-    displayText: 'Career and Business',
-  },
-  {
-    id: 'EDUCATION_AND_LEARNING',
-    displayText: 'Education and Learning',
-  },
-  {
-    id: 'FASHION_AND_BEAUTY',
-    displayText: 'Fashion and Learning',
-  },
-  {
-    id: 'GAMES',
-    displayText: 'Games',
-  },
-]
 
 // Replace your code here
 class App extends Component {
   state = {
-    topicList: topicsList,
     name: '',
-    activeTopic: topicsList[0].id,
+    topic: 'ARTS_AND_CULTURE',
     isRegister: false,
-    isName: false,
+    showError: false,
   }
 
   onChangeName = name => {
     this.setState({name})
   }
 
-  onChangeActiveTopic = topic => {
-    this.setState({activeTopic: topic})
+  onChangeTopic = topic => {
+    this.setState({topic})
   }
 
-  onRegisterNow = () => {
+  onRegister = () => {
     this.setState({isRegister: true})
   }
 
-  onName = () => {
-    this.setState({isName: true})
+  updateError = () => {
+    this.setState({showError: true})
   }
 
   render() {
-    const {topicList, name, activeTopic, isRegister, isName} = this.state
+    const {name, topic, isRegister, showError} = this.state
 
     return (
       <MeetupContext.Provider
         value={{
-          topicList,
           name,
-          activeTopic,
+          topic,
           isRegister,
-          isName,
-          onRegisterNow: this.onRegisterNow,
+          showError,
+          onRegister: this.onRegister,
+          onChangeTopic: this.onChangeTopic,
           onChangeName: this.onChangeName,
-          onChangeActiveTopic: this.onChangeActiveTopic,
-          onName: this.onName,
+          updateError: this.updateError,
         }}
       >
         <Switch>

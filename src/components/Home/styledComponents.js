@@ -34,11 +34,11 @@ export const Button = styled.button`
 export const CustomHeading = styled.h1`
   color: #3b82f6;
   font-family: 'Roboto';
-  font-size: 24px;
-  line-height: 1.8;
+  font-size: 28px;
+  line-height: 2.5;
 `
 
-export const CustomPara = styled.h1`
+export const CustomPara = styled.p`
   color: #334155;
   font-family: 'Roboto';
   font-size: 18px;
@@ -51,4 +51,7 @@ export const Logo = styled.img`
   width: 220px;
   height: 50px;
   margin-bottom: 25px;
+  align-self: flex-start;
+  padding-left: 25px;
+  padding-top: 15px;
 `

@@ -7,10 +7,6 @@ export const RegisterContainer = styled.div`
   align-items: center;
   height: 100vh;
 `
-export const Logo = styled.img`
-  width: 220px;
-  height: 50px;
-`
 
 export const Card = styled.div`
   height: 500px;
@@ -39,6 +35,7 @@ export const Label = styled.label`
   font-family: 'Roboto';
   font-size: 18px;
   margin-bottom: 5px;
+  align-self: flex-start;
 `
 
 export const InputText = styled.input`

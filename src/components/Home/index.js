@@ -1,5 +1,6 @@
 import {Link} from 'react-router-dom'
 import MeetupContext from '../../context/MeetupContext'
+import Header from '../Header'
 
 import {
   HomeContainer,
@@ -9,53 +10,80 @@ import {
   CustomHeading,
   CustomPara,
   ImageElement,
-  Logo,
 } from './styledComponents'
 
-const Home = () => (
-  <MeetupContext.Consumer>
-    {value => {
-      const {name, activeTopic, isRegister, topicList} = value
+const topicsList = [
+  {
+    id: 'ARTS_AND_CULTURE',
+    displayText: 'Arts and Culture',
+  },
+  {
+    id: 'CAREER_AND_BUSINESS',
+    displayText: 'Career and Business',
+  },
+  {
+    id: 'EDUCATION_AND_LEARNING',
+    displayText: 'Education and Learning',
+  },
+  {
+    id: 'FASHION_AND_BEAUTY',
+    displayText: 'Fashion and Learning',
+  },
+  {
+    id: 'GAMES',
+    displayText: 'Games',
+  },
+]
 
-      const topic = topicList.filter(each => each.id === activeTopic)
-      console.log(topic)
+const Home = props => {
+  const onRegister = () => {
+    const {history} = props
+    history.replace('/register')
+  }
 
-      const renderHomeRegisterView = () => (
-        <>
-          <Heading>Welcome to Meetup</Heading>
-          <Paragraph>Please register for the topic</Paragraph>
-          <Link to="/register">
-            <Button type="button">Register</Button>
-          </Link>
-          <ImageElement
-            src="https://assets.ccbp.in/frontend/react-js/meetup/meetup-img.png"
-            alt="meetup"
-          />
-        </>
-      )
+  return (
+    <MeetupContext.Consumer>
+      {value => {
+        const {name, topic, isRegister} = value
 
-      const renderRegisterView = () => (
-        <>
-          <CustomHeading>Hello {name}</CustomHeading>
-          <CustomPara>Welcome to {topic[0].displayText}</CustomPara>
-          <ImageElement
-            src="https://assets.ccbp.in/frontend/react-js/meetup/meetup-img.png"
-            alt="meetup"
-          />
-        </>
-      )
+        console.log(name)
 
-      return (
-        <HomeContainer>
-          <Logo
-            src="https://assets.ccbp.in/frontend/react-js/meetup/website-logo-img.png"
-            alt="website logo"
-          />
-          {isRegister ? renderRegisterView() : renderHomeRegisterView()}
-        </HomeContainer>
-      )
-    }}
-  </MeetupContext.Consumer>
-)
+        const activeTopic = topicsList.filter(each => each.id === topic)
+
+        return (
+          <>
+            <Header />
+            <HomeContainer>
+              {isRegister ? (
+                <>
+                  <CustomHeading>Hello {name}</CustomHeading>
+                  <CustomPara>
+                    Welcome to {activeTopic[0].displayText}
+                  </CustomPara>
+                  <ImageElement
+                    src="https://assets.ccbp.in/frontend/react-js/meetup/meetup-img.png"
+                    alt="meetup"
+                  />
+                </>
+              ) : (
+                <>
+                  <Heading>Welcome to Meetup</Heading>
+                  <Paragraph>Please register for the topic</Paragraph>
+                  <Link to="/register" onClick={onRegister}>
+                    <Button type="button">Register</Button>
+                  </Link>
+                  <ImageElement
+                    src="https://assets.ccbp.in/frontend/react-js/meetup/meetup-img.png"
+                    alt="meetup"
+                  />
+                </>
+              )}
+            </HomeContainer>
+          </>
+        )
+      }}
+    </MeetupContext.Consumer>
+  )
+}
 
 export default Home
